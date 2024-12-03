@@ -138,3 +138,58 @@ let ``Check square function`` (l: int list) =
     |> List.map (fun x -> (float x, float (f x)))
     |> checkFunction f [ Lagrange(int16 3) ]
 ```
+
+Пример выполнения:
+```
+malevrovich@NB-2814:~/fsharp/FShardInterpolate/src/FSharpInterpolate$ dotnet run 1.0 linear lagrange=4
+step: 1.00
+methods: seq [Linear; Lagrange 4s]
+0 0
+1.571 1
+Linear
+0.00    1.00
+0.00    0.64
+
+3.142 0
+Linear
+1.57    2.57
+1.00    0.36
+
+4.712 -1
+Linear
+3.14    4.14
+0.00    -0.64
+
+Lagrange 4s
+0.00    1.00    2.00    3.00    4.00
+0.00    0.97    0.84    0.12    -0.67
+
+12.568 0
+Linear
+4.71    5.71    6.71    7.71    8.71    9.71    10.71   11.71
+-1.00   -0.87   -0.75   -0.62   -0.49   -0.36   -0.24   -0.11
+
+Lagrange 4s
+1.57    2.57    3.57    4.57    5.57    6.57    7.57    8.57    9.57    10.57   11.57
+1.00    0.37    -0.28   -0.91   -1.49   -1.95   -2.26   -2.38   -2.25   -1.84   -1.11
+```
+
+```
+malevrovich@NB-2814:~/fsharp/FShardInterpolate/src/FSharpInterpolate$ dotnet run 1.0 linear lagrange=4
+step: 1.00
+methods: seq [Linear; Lagrange 4s]
+-1 
+Found errors:
+Parse error at Float: 
+Skipping line
+2 a
+Found errors:
+Parse error at Float: a
+Skipping line
+```
+
+```
+malevrovich@NB-2814:~/fsharp/FShardInterpolate/src/FSharpInterpolate$ dotnet run 1.0 lineeear lagrange=4
+Unknown arg lineeear
+Usage: step interpolate [linear|lagrange={int16}]...
+```
