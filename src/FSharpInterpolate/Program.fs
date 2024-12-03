@@ -27,30 +27,6 @@ let readLines =
             null)
     |> Seq.takeWhile (not << isNull)
 
-let windowedMap processors nums =
-    let maxWindowSize = fst (processors |> Seq.maxBy fst)
-
-    nums
-    |> Seq.scan
-        (fun (prevWindow, _) x ->
-            let window =
-                if List.length prevWindow < maxWindowSize then
-                    List.append prevWindow [ x ]
-                else
-                    List.append (List.tail prevWindow) [ x ]
-
-            let outSeq =
-                processors
-                |> Seq.map (fun (windowSize, proc) ->
-                    if windowSize <= List.length window then
-                        Some(window |> List.skip (List.length window - windowSize) |> proc)
-                    else
-                        None)
-
-            window, outSeq)
-        (List.empty, Seq.empty)
-    |> Seq.map snd
-
 [<EntryPoint>]
 let main (args) =
     let parsedStep = BaseParsing.parseFloat args[0]
@@ -81,14 +57,7 @@ let main (args) =
                     None)
             |> Seq.cache
 
-
-        let processors =
-            methods
-            |> Seq.map (fun m -> windowSize m, fun window -> interpolate m step window)
-
-        points
-        |> windowedMap processors
-        |> Seq.skip 1
+        interpolateStream points methods step
         |> Seq.iter (fun out_seq ->
             out_seq
             |> Seq.zip methods

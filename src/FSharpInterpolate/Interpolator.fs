@@ -37,3 +37,34 @@ let interpolate method step window =
     Seq.initInfinite (fun x -> startX + step * float x)
     |> Seq.takeWhile (fun x -> x <= finishX)
     |> Seq.map (fun x -> x, interpolator method window x)
+
+let windowedMap processors nums =
+    let maxWindowSize = fst (processors |> Seq.maxBy fst)
+
+    nums
+    |> Seq.scan
+        (fun (prevWindow, _) x ->
+            let window =
+                if List.length prevWindow < maxWindowSize then
+                    List.append prevWindow [ x ]
+                else
+                    List.append (List.tail prevWindow) [ x ]
+
+            let outSeq =
+                processors
+                |> Seq.map (fun (windowSize, proc) ->
+                    if windowSize <= List.length window then
+                        Some(window |> List.skip (List.length window - windowSize) |> proc)
+                    else
+                        None)
+
+            window, outSeq)
+        (List.empty, Seq.empty)
+    |> Seq.map snd
+
+let interpolateStream points methods step =
+    let processors =
+        methods
+        |> Seq.map (fun m -> windowSize m, fun window -> interpolate m step window)
+
+    points |> windowedMap processors |> Seq.skip 1
