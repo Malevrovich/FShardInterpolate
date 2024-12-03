@@ -1,0 +1,36 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.0.31903.59
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{AFEEF3AF-7C26-4ACE-8EDD-7A8C787668D3}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpInterpolate", "src\FSharpInterpolate\FSharpInterpolate.fsproj", "{313FF836-7254-48CC-84E1-AEF958CEA44D}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{81B08B5A-4591-4070-87C2-A1F2A1A62F7C}"
+EndProject
+Project("{F2A71F9B-5D33-465A-A702-920D77279786}") = "FSharpInterpolateTests", "tests\FSharpInterpolateTests\FSharpInterpolateTests.fsproj", "{A9FB2907-0D4E-49C4-87C8-ECA61ED29B1F}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{313FF836-7254-48CC-84E1-AEF958CEA44D}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{313FF836-7254-48CC-84E1-AEF958CEA44D}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{313FF836-7254-48CC-84E1-AEF958CEA44D}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{313FF836-7254-48CC-84E1-AEF958CEA44D}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A9FB2907-0D4E-49C4-87C8-ECA61ED29B1F}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A9FB2907-0D4E-49C4-87C8-ECA61ED29B1F}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A9FB2907-0D4E-49C4-87C8-ECA61ED29B1F}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A9FB2907-0D4E-49C4-87C8-ECA61ED29B1F}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{313FF836-7254-48CC-84E1-AEF958CEA44D} = {AFEEF3AF-7C26-4ACE-8EDD-7A8C787668D3}
+		{A9FB2907-0D4E-49C4-87C8-ECA61ED29B1F} = {81B08B5A-4591-4070-87C2-A1F2A1A62F7C}
+	EndGlobalSection
+EndGlobal
